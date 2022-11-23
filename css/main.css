@@ -1,0 +1,201 @@
+/* ALL THE KEYFRAMES ARE AT THE BOTTOM *** */
+
+body {
+  background-color: rgb(46, 46, 46);
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  /* background-image: url(/img/MineSweeper.jpg); */
+  /* why its not working good in github */
+  /* background-image: url(../img/MineSweeper.jpg); */
+}
+.game-container {
+  /* width: 700px; */
+  /* height: 700px; */
+  max-width: 700px;
+  min-height: 700px;
+  border-radius: 25px;
+  background-color: rgba(135, 246, 222, 0.411);
+  margin: 0 auto;
+  margin-top: 50px;
+  padding-bottom: 25px;
+  padding-top: 10px;
+}
+
+h1 {
+  font-size: 70px;
+  color: rgb(255, 255, 255);
+  /* color: rgb(0, 0, 0); */
+  margin-bottom: 15px;
+  animation: shake 3s infinite;
+}
+
+.timer-container {
+  color: whitesmoke;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.restart-btn {
+  cursor: pointer;
+  border: 3px solid rgb(39, 106, 91);
+  font-size: 70px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: rgba(64, 165, 143, 0.303);
+  border-radius: 50%;
+  animation: shake2 3s infinite;
+}
+
+.level-btns-container {
+  /* padding: 10px; */
+  margin-bottom: 20px;
+}
+
+.level-btn {
+  font-weight: bold;
+  color: whitesmoke;
+  border: 1px solid rgb(9, 8, 20);
+  margin: 5px;
+  padding: 10px;
+  cursor: pointer;
+  background: linear-gradient(rgb(20, 159, 103), rgb(0, 107, 85));
+  border-radius: 3px;
+}
+
+.level-btn:hover {
+  background: linear-gradient(rgb(10, 118, 75), rgb(2, 59, 47));
+}
+
+table {
+  margin: auto;
+}
+
+.cell {
+  width: 45px;
+  height: 45px;
+  font-size: 1.1em;
+  border: 1px solid rgb(36, 36, 36);
+  background: linear-gradient(rgb(174, 146, 250), rgb(118, 101, 213));
+  border-radius: 3px;
+}
+
+.clickable:hover {
+  background: linear-gradient(rgb(80, 67, 154), rgb(50, 40, 102));
+  cursor: pointer;
+}
+
+.shown {
+  background: linear-gradient(rgb(163, 242, 131), rgb(138, 211, 109));
+}
+
+.clicked-mine {
+  background: linear-gradient(rgb(95, 22, 22), rgb(120, 33, 33));
+}
+
+.exploded {
+  background: linear-gradient(rgba(215, 166, 166, 0.9), rgba(216, 163, 163, 0.798));
+}
+
+.lives-container {
+  color: whitesmoke;
+  font-size: 20px;
+  margin-top: 40px;
+  margin-right: 30px;
+}
+
+.hints-container {
+  margin-left: 30px;
+}
+
+.hint-btn {
+  background-color: rgba(38, 38, 38, 0);
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 2px;
+  margin: 0px 5px;
+}
+
+.hint {
+  background: linear-gradient(rgb(44, 243, 37), rgb(37, 247, 244));
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes MoveUpDown {
+  0%,
+  100% {
+    bottom: 0;
+  }
+  50% {
+    bottom: 100px;
+  }
+}
+@keyframes MoveDownUp {
+  0%,
+  100% {
+    bottom: 0px;
+  }
+  50% {
+    bottom: 100px;
+  }
+}
+
+/* ///////////////// */
+@keyframes shake {
+  0% {
+    transform: rotate(0deg);
+  }
+  80% {
+    transform: rotate(0deg);
+  }
+  85% {
+    transform: rotate(2deg);
+  }
+  95% {
+    transform: rotate(-2deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes shake2 {
+  0% {
+    transform: rotate(-20deg);
+  }
+  80% {
+    transform: rotate(20deg);
+  }
+  85% {
+    transform: rotate(20deg);
+  }
+  95% {
+    transform: rotate(-20deg);
+  }
+  100% {
+    transform: rotate(-20deg);
+  }
+}
+
+@keyframes reveal {
+  0% {
+    filter: brightness(0);
+  }
+  /* 50% {
+    filter: brightness(0.5); */
+  /* } */
+  100% {
+    filter: brightness(1);
+  }
+}
+
+.pause-button {
+  height: 30px;
+  width: 150px;
+  margin-top: 12px;
+  margin-left: 164px;
+}
