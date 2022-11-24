@@ -2,7 +2,6 @@
 
 //! DON'T FORGET TO PUT BEST SCORE -learn from W3schools - https://www.w3schools.com/html/html5_webstorage.asp
 
-//!for right click - oncontextmenu - https://www.w3schools.com/jsref/event_oncontextmenu.asp
 // if (typeof(Storage) !== "undefined") {
 //     // Code for localStorage/sessionStorage.
 //   } else {
@@ -15,22 +14,14 @@ var gEmptyCells = [];
 const MINE = '💣';
 const FLAG = '🚩';
 
-// var gCurrCell = {
-//     minesAroundCount: 0,
-//     isShown: false,
-//     isMine: false,
-//     isMarked: false,
-//     isExploded: false,
-//   };
-
 var gGame = {
-  //state of the game itself
   isOn: false,
   shownCount: 0,
   markedCount: 0,
   secsPassed: 0,
   minesLocations: [],
   isWin: false,
+  safeCount: 0,
   livesCount: 1,
   minesExplodedCount: 0,
 };
@@ -127,7 +118,6 @@ function setMines(clickedCellI, clickedCellJ) {
 }
 
 function checkWin() {
-  //
   // prettier-ignore
   const notMineCellsCount = gLevel.size ** 2 - gLevel.mines;
   if (gGame.shownCount !== notMineCellsCount) {
@@ -144,6 +134,7 @@ function checkWin() {
   gGame.isOn = false;
   gGame.isWin = true;
   enableRestartBtn();
+  //Here need to save the local score affected by shortest time
 }
 
 function checkGameOver(elCell, i, j) {
@@ -190,11 +181,10 @@ function restartGame() {
   gGame.shownCount = 0;
   gGame.markedCount = 0;
   gGame.secsPassed = '0.000';
-  gGame.minesLocations = [];
-  gGame.isWin = false;
   gGame.livesCount = gLevel.lives;
+  gGame.isWin = false;
+  gGame.minesLocations = [];
   gGame.minesExplodedCount = 0;
-
   gStartTime = null;
   gTimeIntervalId = null;
   renderHintsCount();
@@ -241,4 +231,14 @@ function renderLives() {
   }
   const elLives = document.querySelector('.lives');
   elLives.innerText = strHtmlLives;
+}
+
+function onSafeClick() {
+  gGame.safeCount--;
+  var randCell = getRandSafeCell();
+  randCell.isSafe = true;
+  renderBoard(gBoard);
+  randCell.isSafe = false;
+  setTimeout(renderBoard, 1500, gBoard);
+  renderSafeCount();
 }

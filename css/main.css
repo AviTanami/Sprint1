@@ -4,10 +4,8 @@ body {
   background-color: rgb(46, 46, 46);
   /* font-family: Arial, Helvetica, sans-serif; */
   font-family: 'JetBrains Mono', monospace;
-
   text-align: center;
   background-image: url(../img/MineSweeperBlur.jpg);
-  /* background-image: url(../img/MineSweeper.jpg); */
   /* filter: blur(2px); //how to make it only to background? */
 }
 .game-container {
@@ -21,13 +19,14 @@ body {
   margin-top: 50px;
   padding-bottom: 25px;
   padding-top: 10px;
-  box-shadow: -5px 2px 8px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: -5px 2px 8px 4px rgba(0, 0, 0, 0.178);
 }
 
 h1 {
   font-size: 70px;
   color: rgb(255, 255, 255);
   /* color: rgb(0, 0, 0); */
+  margin-top: 0;
   margin-bottom: 15px;
   animation: shake 3s infinite;
   font-family: 'Arial Black', Gadget, sans-serif;
@@ -54,7 +53,6 @@ h1 {
 }
 
 .level-btns-container {
-  /* padding: 10px; */
   margin-bottom: 20px;
 }
 
@@ -114,7 +112,7 @@ h1 {
 }
 
 table {
-  margin: auto;
+  margin: 0px auto;
 }
 
 .cell {
@@ -168,20 +166,19 @@ table {
 }
 
 .safe-btn {
-    background-color: rgba(38, 38, 38, 0);
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-    padding: 2px;
-    margin: 0px 5px;
-  }
+  background-color: rgba(38, 38, 38, 0);
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 2px;
+  margin: 0px 5px;
 }
 
 .hidden {
   display: none;
 }
 
-/* ///////////////// */
+/* h1 keyframe */
 @keyframes shake {
   0% {
     transform: rotate(0deg);
@@ -200,6 +197,7 @@ table {
   }
 }
 
+/* restart-smiley button */
 @keyframes shake2 {
   0% {
     transform: rotate(-20deg);
@@ -217,27 +215,6 @@ table {
     transform: rotate(-20deg);
   }
 }
-
-@keyframes reveal {
-  0% {
-    filter: brightness(0);
-  }
-  /* 50% {
-    filter: brightness(0.5); */
-  /* } */
-  100% {
-    filter: brightness(1);
-  }
-}
-
-.pause-button {
-  height: 30px;
-  width: 150px;
-  margin-top: 12px;
-  margin-left: 164px;
-}
-
-/* //////// */
 
 .button-15 {
   background-image: linear-gradient(#42a1ec, #0070c9);
