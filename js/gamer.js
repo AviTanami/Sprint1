@@ -4,26 +4,26 @@ var gTimeIntervalId;
 var gStartTime;
 
 function cellClicked(elCell, i, j) {
-  // on first click
+  // console.log('elCell:', elCell);
   if (!gTimeIntervalId) {
     startGame(i, j);
   }
   if (!gGame.isOn) return;
   const cell = gBoard[i][j];
-  if (cell.isShown || cell.isMarked || cell.isExploded) return;
+  if (cell.isMarked || cell.isShown || cell.isExploded) return;
   if (gIsHint) {
     showHint(i, j);
     return;
   }
   if (cell.isMine) {
     // playSoundExploded(); // It's too loud
-    gameOver(elCell, i, j);
+    checkGameOver(elCell, i, j);
     return;
   }
   cell.isShown = true;
   gGame.shownCount++;
   elCell.classList.add('shown');
-  elCell.classList.remove('clickable');
+  elCell.classList.remove('canReveal');
   //put audio
   playSoundPop();
   if (cell.minesAroundCount !== 0) {
@@ -31,7 +31,7 @@ function cellClicked(elCell, i, j) {
     elCell.innerText = cell.minesAroundCount;
   } else {
     elCell.innerText = ' ';
-    expandShown(i, j);
+    expandShown(gBoard, i, j);
   }
   checkWin();
 }
@@ -59,12 +59,12 @@ function cellMarked(ev, elCell, i, j) {
   checkWin();
 }
 
-function expandShown(cellI, cellJ) {
+function expandShown(board, cellI, cellJ) {
   for (var i = cellI - 1; i <= cellI + 1; i++) {
-    if (i < 0 || i >= gBoard.length) continue;
+    if (i < 0 || i >= board.length) continue;
     for (var j = cellJ - 1; j <= cellJ + 1; j++) {
-      const currCell = gBoard[i][j];
-      if (j < 0 || j >= gBoard.length) continue;
+      const currCell = board[i][j];
+      if (j < 0 || j >= board.length) continue;
       if (cellI === i && cellJ === j) continue;
       if (currCell.isMine) continue;
       if (currCell.isMarked) continue;
@@ -75,10 +75,10 @@ function expandShown(cellI, cellJ) {
       // THE DOM
       var elCurrCell = document.querySelector(`.cell-${i}-${j}`);
       elCurrCell.classList.add('shown');
-      elCurrCell.classList.remove('clickable');
+      elCurrCell.classList.remove('canReveal');
       if (currCell.minesAroundCount === 0) {
         elCurrCell.innerText = ' ';
-        expandShown(i, j);
+        expandShown(board, i, j);
       } else {
         elCurrCell.innerText = currCell.minesAroundCount;
       }
@@ -98,10 +98,10 @@ function startTime() {
 function setTime() {
   const timeDiff = (Date.now() - gStartTime) / 1000;
   gGame.secsPassed = timeDiff.toFixed(3);
-  renderStopwatch();
+  renderTimer();
 }
 
-function renderStopwatch() {
-  const elStopwatch = document.querySelector('.timer');
-  elStopwatch.innerHTML = gGame.secsPassed;
+function renderTimer() {
+  const elTimer = document.querySelector('.timer');
+  elTimer.innerHTML = gGame.secsPassed;
 }

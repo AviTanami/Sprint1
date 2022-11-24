@@ -12,26 +12,30 @@
 <body onload="onInitGame()">
     <div class="game-container">
         <h1>MineSweeper</h1>
+        <div class="timer-container">TIMER: ⏳ <span class="timer">0.000</span></div>
         <div class="restart-btn-container">
             <button class="restart-btn">😊</button>
         </div>
-        <div class="timer-container">TIMER: ⏳ <span class="timer">0.000</span></div>
         <div class="level-btns-container">
-            <button class="level-btn" onclick="EasyLevel()">EASY (4X4)</button>
-            <button class="level-btn" onclick="MediumLevel()">MEDIUM (8X8)</button>
-            <button class="level-btn" onclick="ExpertLevel()">EXPERT (12X12)</button>
+            <button class="level-btn" onclick="EasyLevel(4)">EASY (4X4)</button>
+            <button class="level-btn" onclick="MediumLevel(8)">MEDIUM (8X8)</button>
+            <button class="level-btn" onclick="ExpertLevel(12)">EXPERT (12X12)</button>
         </div>
         <table>
-            <tbody></tbody>
+            <tbody></tbody> 
         </table>
-        <div class="lives-container">LIVES : <span class="lives">❤</span>
+        <div class="lives-container">LIVES : <span class="lives">💖</span> 
             <span class="hints-container"> HINTS: <span class="hints">
                     <button class="hint-btn" onclick="nextClickHint(this)">💡</button>
-                    <span class="safe-click-btn"> SAFE CLICK - <span class="safe">
+                    <span class="safe-click-btn"> SAFE CLICKS: <span class="safe">
+                        <button class="safe-btn" onclick="nextSafeClick(this)">✅</button>
                 </span>
                 
         </div>
     </div>
+    <footer>
+        <p>Project By: Avi Tanami</p>
+    </footer>
     <script src="js/util.js"></script>
     <script src="js/gameLevels.js"></script>
     <script src="js/main.js"></script>

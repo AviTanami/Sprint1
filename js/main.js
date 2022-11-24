@@ -10,7 +10,7 @@
 //   }
 
 var audio;
-var gBoard; //contains the object cell
+var gBoard; //contains the object cell  - the model
 var gEmptyCells = [];
 const MINE = '💣';
 const FLAG = '🚩';
@@ -28,7 +28,7 @@ var gGame = {
   isOn: false,
   shownCount: 0,
   markedCount: 0,
-  secsPassed: '0:0',
+  secsPassed: 0,
   minesLocations: [],
   isWin: false,
   livesCount: 1,
@@ -61,7 +61,7 @@ function buildBoard() {
   return gBoard;
 }
 //
-//oncontextmenu for the right click//
+// oncontextmenu for the right click disable
 function renderBoard() {
   //render strhtml put a tr between open and close , send class as info i j location
   const eltBody = document.querySelector('tbody');
@@ -69,11 +69,12 @@ function renderBoard() {
   for (var i = 0; i < gBoard.length; i++) {
     strHtml += '<tr>';
     for (var j = 0; j < gBoard.length; j++) {
-      strHtml += `<td class="cell cell-${i}-${j} clickable" onclick="cellClicked(this, ${i}, ${j})" oncontextmenu="cellMarked(event, this, ${i}, ${j})"> </td>`;
+      strHtml += `<td class="cell cell-${i}-${j} canReveal" onclick="cellClicked(this, ${i}, ${j})" oncontextmenu="cellMarked(event, this, ${i}, ${j})"> </td>`;
     }
     strHtml += '</tr>';
   }
   eltBody.innerHTML = strHtml;
+  // console.log('strHtml:', strHtml);
 }
 
 function startGame(i, j) {
@@ -88,19 +89,19 @@ function startGame(i, j) {
 }
 
 //count mines around cells
-function setMinesNegsCount(cellI, cellJ, mat) {
+function setMinesNegsCount(cellI, cellJ, board) {
   //
   for (var i = cellI - 1; i <= cellI + 1; i++) {
-    if (i < 0 || i >= mat.length) continue;
+    if (i < 0 || i >= board.length) continue;
 
     for (var j = cellJ - 1; j <= cellJ + 1; j++) {
       if (i === cellI && j === cellJ) continue;
-      if (j < 0 || j >= mat[i].length) continue;
+      if (j < 0 || j >= board[i].length) continue;
 
-      if (mat[i][j].isMine) mat[cellI][cellJ].minesAroundCount++;
+      if (board[i][j].isMine) board[cellI][cellJ].minesAroundCount++;
     }
   }
-  return mat[cellI][cellJ].minesAroundCount;
+  return board[cellI][cellJ].minesAroundCount;
 }
 
 function getEmptyCells(board, cellI, cellJ) {
@@ -138,13 +139,14 @@ function checkWin() {
     const mineCell = gBoard[mineLocation.i][mineLocation.j];
     if (!mineCell.isMarked && !mineCell.isExploded) return;
   }
+  //game is of - false and win on true
   clearInterval(gTimeIntervalId);
   gGame.isOn = false;
   gGame.isWin = true;
   enableRestartBtn();
 }
 
-function gameOver(elCell, i, j) {
+function checkGameOver(elCell, i, j) {
   --gGame.livesCount;
   // gGame.livesCount-- if the minues after the gGame.livesCount it will be for next iteration
   renderLives();
@@ -152,7 +154,7 @@ function gameOver(elCell, i, j) {
   if (gGame.livesCount !== 0) {
     gBoard[i][j].isExploded = true;
     elCell.innerText = '💣';
-    elCell.classList.remove('clickable');
+    elCell.classList.remove('canReveal');
     elCell.classList.add('exploded');
     return;
   }
@@ -187,7 +189,7 @@ function restartGame() {
   gGame.isOn = false;
   gGame.shownCount = 0;
   gGame.markedCount = 0;
-  gGame.secsPassed = '00:00';
+  gGame.secsPassed = '0.000';
   gGame.minesLocations = [];
   gGame.isWin = false;
   gGame.livesCount = gLevel.lives;
@@ -196,7 +198,7 @@ function restartGame() {
   gStartTime = null;
   gTimeIntervalId = null;
   renderHintsCount();
-  renderStopwatch();
+  renderTimer();
   renderLives();
   disableRestartBtn();
   buildBoard();
@@ -221,10 +223,10 @@ function disableRestartBtn() {
 }
 
 function disableHover() {
-  const clickableCells = document.querySelectorAll('.clickable');
-  for (var i = 0; i < clickableCells.length; i++) {
-    const clickableCell = clickableCells[i];
-    clickableCell.classList.remove('clickable');
+  const elRevealCells = document.querySelectorAll('.canReveal');
+  for (var i = 0; i < elRevealCells.length; i++) {
+    const canRevealCell = elRevealCells[i];
+    canRevealCell.classList.remove('canReveal');
   }
 }
 
@@ -234,7 +236,7 @@ function renderLives() {
     strHtmlLives += '0';
   } else {
     for (var i = 0; i < gGame.livesCount; i++) {
-      strHtmlLives += '❤';
+      strHtmlLives += '💖';
     }
   }
   const elLives = document.querySelector('.lives');
