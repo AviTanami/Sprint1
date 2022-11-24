@@ -353,11 +353,11 @@ function getNextLocation(eventKeyboard) {
 ////////////////////////////////////////////////////////////////
 //*SORTING NUMS
 
-numbers.sort(function (a, b) {
-  if (a > b) return 1;
-  if (a < b) return -1;
-  return 0;
-});
+// numbers.sort(function (a, b) {
+//   if (a > b) return 1;
+//   if (a < b) return -1;
+//   return 0;
+// });
 
 //////////////////////////////////////////////////////////////
 //* time from specific time stamp when it called.

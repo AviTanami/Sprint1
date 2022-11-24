@@ -1,3 +1,19 @@
+// numbers.sort(function (a, b) {
+//   if (a > b) return 1;
+//   if (a < b) return -1;
+//   return 0;
+// });
+
+// function hideElement(selector) {
+//   const el = document.querySelector(selector);
+//   el.classList.add('hidden');
+// }
+
+// function showElement(selector) {
+//   const el = document.querySelector(selector);
+//   el.classList.remove('hidden');
+// }
+
 function createMat(ROWS, COLS) {
   var mat = [];
   for (var i = 0; i < ROWS; i++) {

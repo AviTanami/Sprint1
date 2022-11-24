@@ -1,5 +1,8 @@
 'use strict';
 
+var gTimeIntervalId;
+var gStartTime;
+
 function cellClicked(elCell, i, j) {
   // on first click
   if (!gTimeIntervalId) {
@@ -13,7 +16,7 @@ function cellClicked(elCell, i, j) {
     return;
   }
   if (cell.isMine) {
-    playSoundExploded();
+    // playSoundExploded(); // It's too loud
     gameOver(elCell, i, j);
     return;
   }
@@ -82,9 +85,6 @@ function expandShown(cellI, cellJ) {
     }
   }
 }
-
-var gTimeIntervalId;
-var gStartTime;
 
 // function getTime() {
 //     return new Date().toString().split(' ')[4];

@@ -1,6 +1,6 @@
 'use strict';
 
-//!need to make a 7BOOM level and a custom place mine level
+//!need to make a 7BOOM level and a custom place mine level!
 
 const gLevel = {
   size: 4,

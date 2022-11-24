@@ -15,7 +15,6 @@ var gEmptyCells = [];
 const MINE = '💣';
 const FLAG = '🚩';
 
-
 // var gCurrCell = {
 //     minesAroundCount: 0,
 //     isShown: false,
@@ -182,7 +181,7 @@ function showAllMines() {
 }
 
 function restartGame() {
-  //restarts all data
+  //restarts all data..
   clearInterval(gTimeIntervalId);
 
   gGame.isOn = false;
@@ -208,9 +207,9 @@ function enableRestartBtn() {
   const elRestartBtnContainer = document.querySelector('.restart-btn-container');
   var btnStrHTML = `<button class="restart-btn" onclick="restartGame()">`;
   if (gGame.isWin) {
-    btnStrHTML += '🙂';
+    btnStrHTML += '😊';
   } else {
-    btnStrHTML += '☹';
+    btnStrHTML += '😢';
   }
   btnStrHTML += '</button>';
   elRestartBtnContainer.innerHTML = btnStrHTML;
@@ -218,7 +217,7 @@ function enableRestartBtn() {
 
 function disableRestartBtn() {
   const elBtnContainer = document.querySelector('.restart-btn-container');
-  elBtnContainer.innerHTML = `<button class="restart-btn"()">🙂</button>`;
+  elBtnContainer.innerHTML = `<button class="restart-btn"()">😊</button>`;
 }
 
 function disableHover() {

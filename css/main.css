@@ -2,11 +2,13 @@
 
 body {
   background-color: rgb(46, 46, 46);
-  font-family: Arial, Helvetica, sans-serif;
+  /* font-family: Arial, Helvetica, sans-serif; */
+  font-family: 'JetBrains Mono', monospace;
+
   text-align: center;
-  /* background-image: url(/img/MineSweeper.jpg); */
-  /* why its not working good in github */
+  background-image: url(../img/MineSweeperBlur.jpg);
   /* background-image: url(../img/MineSweeper.jpg); */
+  /* filter: blur(2px); //how to make it only to background? */
 }
 .game-container {
   /* width: 700px; */
@@ -14,11 +16,12 @@ body {
   max-width: 700px;
   min-height: 700px;
   border-radius: 25px;
-  background-color: rgba(135, 246, 222, 0.411);
+  background-color: #0784b5eb;
   margin: 0 auto;
   margin-top: 50px;
   padding-bottom: 25px;
   padding-top: 10px;
+  box-shadow: -5px 2px 8px 4px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
@@ -27,6 +30,9 @@ h1 {
   /* color: rgb(0, 0, 0); */
   margin-bottom: 15px;
   animation: shake 3s infinite;
+  font-family: 'Arial Black', Gadget, sans-serif;
+  text-shadow: 0px 0px 0 rgb(205, 143, 0), -1px 1px 0 rgb(155, 93, 0), -2px 2px 1px rgba(0, 0, 0, 0.11), -2px 2px 1px rgba(0, 0, 0, 0.5),
+    0px 0px 1px rgba(0, 0, 0, 0.2);
 }
 
 .timer-container {
@@ -37,12 +43,12 @@ h1 {
 
 .restart-btn {
   cursor: pointer;
-  border: 3px solid rgb(39, 106, 91);
+  border: 3px solid #9bd4e4;
   font-size: 70px;
   margin-top: 20px;
   margin-bottom: 20px;
   padding: 10px;
-  background-color: rgba(64, 165, 143, 0.303);
+  background-color: #39ade7b7;
   border-radius: 50%;
   animation: shake2 3s infinite;
 }
@@ -59,12 +65,52 @@ h1 {
   margin: 5px;
   padding: 10px;
   cursor: pointer;
-  background: linear-gradient(rgb(20, 159, 103), rgb(0, 107, 85));
+  background: linear-gradient(#589aad, #4d79a0);
   border-radius: 3px;
+  align-items: center;
+  appearance: none;
+  background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%);
+  border: 0;
+  border-radius: 6px;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, rgba(58, 65, 111, 0.5) 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: 'JetBrains Mono', monospace;
+  height: 48px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow 0.14s, transform 0.15s;
+  user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow, transform;
+  font-size: 18px;
 }
 
 .level-btn:hover {
-  background: linear-gradient(rgb(10, 118, 75), rgb(2, 59, 47));
+  background-image: linear-gradient(#51a9ee, #147bcd);
+  border-color: #1482d0;
+  text-decoration: none;
+}
+
+.level-btn:active {
+  background-image: linear-gradient(#3d94d9, #0067b9);
+  border-color: #006dbc;
+  outline: none;
+}
+
+.level-btn:focus {
+  box-shadow: rgba(131, 192, 253, 0.5) 0 0 0 3px;
+  outline: none;
 }
 
 table {
@@ -72,8 +118,8 @@ table {
 }
 
 .cell {
-  width: 45px;
-  height: 45px;
+  width: 50px;
+  height: 50px;
   font-size: 1.1em;
   border: 1px solid rgb(36, 36, 36);
   background: linear-gradient(rgb(174, 146, 250), rgb(118, 101, 213));
@@ -198,4 +244,30 @@ table {
   width: 150px;
   margin-top: 12px;
   margin-left: 164px;
+}
+
+/* //////// */
+
+.button-15 {
+  background-image: linear-gradient(#42a1ec, #0070c9);
+  border: 1px solid #0077cc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  direction: ltr;
+  display: block;
+  font-family: 'SF Pro Text', 'SF Pro Icons', 'AOS Icons', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -0.022em;
+  line-height: 1.47059;
+  min-width: 30px;
+  overflow: visible;
+  padding: 4px 15px;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
 }
