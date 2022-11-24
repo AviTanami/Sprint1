@@ -6,6 +6,7 @@ body {
   font-family: 'JetBrains Mono', monospace;
   text-align: center;
   background-image: url(../img/MineSweeperBlur.jpg);
+  background-repeat: no-repeat;
   /* filter: blur(2px); //how to make it only to background? */
 }
 .game-container {
